@@ -1,0 +1,1106 @@
+{
+    "assets": {
+        "materials": [
+            {
+                "color": [
+                    255,
+                    255,
+                    255
+                ],
+                "name": "skyboxMaterial",
+                "shaderID": 1,
+                "shininess": 10,
+                "specularMapID": 1,
+                "textureID": 3
+            },
+            {
+                "color": [
+                    255,
+                    255,
+                    255
+                ],
+                "name": "cowPhongMaterial",
+                "shaderID": 0,
+                "shininess": 1000,
+                "specularMapID": 4,
+                "textureID": 4
+            },
+            {
+                "color": [
+                    255,
+                    255,
+                    255
+                ],
+                "name": "UFOMaterial",
+                "shaderID": 0,
+                "shininess": 10,
+                "specularMapID": 6,
+                "textureID": 2
+            },
+            {
+                "color": [
+                    255,
+                    255,
+                    255
+                ],
+                "name": "TractorMaterial",
+                "shaderID": 0,
+                "shininess": 10,
+                "specularMapID": 1,
+                "textureID": 5
+            }
+        ],
+        "meshes": [
+            "Alberto_Tractor.obj",
+            "Alberto_UFO.obj",
+            "Alberto_Cow.obj"
+        ],
+        "sounds": [
+            "laser.wav",
+            "Caravan_mono.wav"
+        ],
+        "textures": [
+            "Alberto_UFO.bmp",
+            "Alberto_Skybox_Space.bmp",
+            "Alberto_Cow.bmp",
+            "Alberto_Tractor.bmp",
+            "Alberto_UFO_Specular.bmp",
+            "Alberto_Tractor_Specular.bmp",
+            "hund.bmp"
+        ]
+    },
+    "entites": [
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 0,
+                "entityName": "Player",
+                "parentID": -1,
+                "visible": false
+            },
+            "2_COMPONENTS": {
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 0,
+                    "meshID": 0,
+                    "objectType": 2,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": true,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        -37.840484619140625,
+                        7.793607711791992,
+                        36.0404052734375
+                    ],
+                    "rotation_relative": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 1,
+                "entityName": "Skybox",
+                "parentID": 0,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "LightComponent": {
+                    "ambient": [
+                        10,
+                        3,
+                        0
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        10,
+                        3,
+                        0
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 1,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        10,
+                        3,
+                        0
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": false,
+                    "materialID": 4,
+                    "meshID": 1,
+                    "objectType": 0,
+                    "reactsToFrustumCulling": false
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "rotation_relative": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "scale_relative": [
+                        100,
+                        100,
+                        100
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 2,
+                "entityName": "UFO Light",
+                "parentID": 0,
+                "visible": false
+            },
+            "2_COMPONENTS": {
+                "MeshComponent": {
+                    "enableCollision": false,
+                    "materialID": 0,
+                    "meshID": 0,
+                    "objectType": 0,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        0,
+                        6,
+                        0
+                    ],
+                    "rotation_relative": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 3,
+                "entityName": "UFO Mesh",
+                "parentID": 0,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "LightComponent": {
+                    "ambient": [
+                        40,
+                        40,
+                        40
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        0,
+                        0,
+                        255
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 2,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        0,
+                        0,
+                        255
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": false,
+                    "materialID": 6,
+                    "meshID": 3,
+                    "objectType": 0,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "rotation_relative": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 4,
+                "entityName": "AI",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AIComponent": {
+                    "distanceBeforeChase": 15,
+                    "speed": 0.00039999998989515007
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 7,
+                    "meshID": 2,
+                    "objectType": 1,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": true,
+                    "orientRotationBasedOnMovement": true,
+                    "position_relative": [
+                        -27.387672424316406,
+                        1.9805634021759033,
+                        -14.561883926391602
+                    ],
+                    "rotation_relative": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 5,
+                "entityName": "AI1",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AIComponent": {
+                    "distanceBeforeChase": 15,
+                    "speed": 0.0003000000142492354
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 7,
+                    "meshID": 2,
+                    "objectType": 1,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": true,
+                    "orientRotationBasedOnMovement": true,
+                    "position_relative": [
+                        39.984073638916016,
+                        -1.0217475891113281,
+                        -3.241549491882324
+                    ],
+                    "rotation_relative": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 6,
+                "entityName": "ScriptTrophy0",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        34,
+                        3.525179624557495,
+                        8
+                    ],
+                    "rotation_relative": [
+                        0,
+                        81,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 7,
+                "entityName": "ScriptTrophy1",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        0,
+                        4.091429233551025,
+                        10
+                    ],
+                    "rotation_relative": [
+                        0,
+                        35,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 8,
+                "entityName": "ScriptTrophy2",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        -4.052195072174072,
+                        2.38724422454834,
+                        3.0407557487487793
+                    ],
+                    "rotation_relative": [
+                        0,
+                        141,
+                        0
+                    ],
+                    "scale_relative": [
+                        0.9801000356674194,
+                        1.0020010471343994,
+                        0.9801000356674194
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 9,
+                "entityName": "ScriptTrophy3",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        21,
+                        1.6820123195648193,
+                        4
+                    ],
+                    "rotation_relative": [
+                        0,
+                        87,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 10,
+                "entityName": "ScriptTrophy4",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        18,
+                        -3.3834962844848633,
+                        -30
+                    ],
+                    "rotation_relative": [
+                        0,
+                        90,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 11,
+                "entityName": "ScriptTrophy5",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        20,
+                        -3.07315731048584,
+                        -3
+                    ],
+                    "rotation_relative": [
+                        0,
+                        89,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 12,
+                "entityName": "ScriptTrophy6",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        26,
+                        5.480643272399902,
+                        13
+                    ],
+                    "rotation_relative": [
+                        0,
+                        73,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 13,
+                "entityName": "ScriptTrophy7",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        7,
+                        3.4072329998016357,
+                        14.685709953308105
+                    ],
+                    "rotation_relative": [
+                        0,
+                        78,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 14,
+                "entityName": "ScriptTrophy8",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        -4,
+                        -1.4266870021820068,
+                        -29
+                    ],
+                    "rotation_relative": [
+                        0,
+                        109,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 15,
+                "entityName": "ScriptTrophy9",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AudioComponent": {
+                    "gain": 1,
+                    "isLooping": false,
+                    "maxDistance": 1,
+                    "soundID": 0
+                },
+                "LightComponent": {
+                    "ambient": [
+                        36,
+                        36,
+                        36
+                    ],
+                    "constant": 1,
+                    "cutOff": 0.8299999833106995,
+                    "diffuse": [
+                        63,
+                        63,
+                        63
+                    ],
+                    "direction": [
+                        0,
+                        -1,
+                        0
+                    ],
+                    "lightType": 0,
+                    "linear": 0.09000000357627869,
+                    "outerCutOff": 0.800000011920929,
+                    "quadratic": 0.03200000151991844,
+                    "specular": [
+                        127,
+                        127,
+                        127
+                    ],
+                    "useEntityTransformForwardVectorAsDirection": false
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 5,
+                    "meshID": 4,
+                    "objectType": 3,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": false,
+                    "orientRotationBasedOnMovement": false,
+                    "position_relative": [
+                        -26,
+                        9.095250129699707,
+                        27
+                    ],
+                    "rotation_relative": [
+                        0,
+                        78,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "1_ENTITY_INFO": {
+                "entityID": 16,
+                "entityName": "AI2",
+                "parentID": -1,
+                "visible": true
+            },
+            "2_COMPONENTS": {
+                "AIComponent": {
+                    "distanceBeforeChase": 15,
+                    "speed": 0.0003499999875202775
+                },
+                "MeshComponent": {
+                    "enableCollision": true,
+                    "materialID": 7,
+                    "meshID": 2,
+                    "objectType": 1,
+                    "reactsToFrustumCulling": true
+                },
+                "TransformComponent": {
+                    "followLandscape": true,
+                    "orientRotationBasedOnMovement": true,
+                    "position_relative": [
+                        14.692571640014648,
+                        1.313783884048462,
+                        36.25736618041992
+                    ],
+                    "rotation_relative": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "scale_relative": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        }
+    ]
+}

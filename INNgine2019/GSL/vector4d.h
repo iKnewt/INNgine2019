@@ -1,7 +1,7 @@
 #ifndef VECTOR4D_H
 #define VECTOR4D_H
 
-#include "gltypes.h"
+#include "Legacy/gltypes.h"
 #include <cmath>
 #include <iostream>
 #include <cassert>

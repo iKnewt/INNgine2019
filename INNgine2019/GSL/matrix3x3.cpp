@@ -20,7 +20,7 @@ namespace gsl
     Matrix3x3::Matrix3x3(std::initializer_list<GLfloat> values)
     {
         int i = 0;
-        for(auto value : values)
+        for(float value : values)
             matrix[i++] = value;
     }
 

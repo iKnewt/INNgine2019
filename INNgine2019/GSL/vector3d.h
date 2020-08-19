@@ -1,7 +1,7 @@
 #ifndef VECTOR3D_H
 #define VECTOR3D_H
 
-#include "gltypes.h"
+#include "Legacy/gltypes.h"
 #include <cmath>
 #include <iostream>
 #include <QDebug>
@@ -14,26 +14,47 @@ class Vector3D
 {
 public:
     //Constructors
-    Vector3D(GLfloat x_in = 0.f, GLfloat y_in = 0.f, GLfloat z_in = 0.f);
+    Vector3D();
+    Vector3D(GLfloat x_in, GLfloat y_in, GLfloat z_in);
+    Vector3D(QJsonArray jsonArray);
     Vector3D(const int v);
-    Vector3D(const double v);
+    Vector3D(const float v);
 
     //Operators
     const Vector3D& operator=(const Vector3D &rhs);     // v = v
+    //    const Vector3D& operator=(const float &rhs);     // v = v
     Vector3D operator+(const Vector3D &rhs) const;      // v + v
     Vector3D operator-(const Vector3D &rhs) const;      // v - v
     Vector3D& operator+=(const Vector3D &rhs);          // v += v
     Vector3D& operator-=(const Vector3D &rhs);          // v -= v
     Vector3D operator-() const;                     // -v
     Vector3D operator*(GLfloat rhs) const;          // v * f
+    Vector3D operator*(const Vector3D& rhs) const;          // v * f
     Vector3D operator^(const Vector3D& rhs) const; // v x v  - cross product
+    Vector3D operator/(GLfloat rhs) const;          // v * f
+
+    bool operator==(const Vector3D &rhs);          // v -= v
 
     //Functions
     GLfloat length() const;
     void normalize();
     Vector3D normalized();
+
+    /**
+     * Relfects the vector around a normal.
+     * @param normal the normal to be reflected upon.
+     */
+    void Reflect(Vector3D normal);
+    /**
+     * Returns a vector that has been reflected around a normal.
+     * @param normal the normal to be reflected upon.
+     * @return The vector that has been relfected.
+     */
+    Vector3D Reflected(Vector3D normal);
+
     static Vector3D cross(const Vector3D &v1, const Vector3D &v2);
     static GLfloat dot(const Vector3D &v1, const Vector3D &v2);
+
 
     void rotateX(GLfloat angle);
     void rotateY(GLfloat angle);
@@ -53,6 +74,7 @@ public:
     GLfloat *yP();
     GLfloat *zP();
 
+    QJsonArray ToQJsonArray() const;
 
     //Friend functions
     friend std::ostream& operator<<(std::ostream &output, const Vector3D &rhs )

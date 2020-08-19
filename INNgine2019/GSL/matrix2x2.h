@@ -3,7 +3,7 @@
 
 #include "vector2d.h"
 #include "vector3d.h"
-#include "gltypes.h"
+#include "Legacy/gltypes.h"
 #include <utility>
 #include <iomanip>
 

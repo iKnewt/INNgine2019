@@ -3,12 +3,13 @@
 
 #include "vector3d.h"
 #include "vector4d.h"
-#include "gltypes.h"
+#include "Legacy/gltypes.h"
 #include <iostream>
 #include <iomanip>
 
 namespace gsl
 {
+
 class Matrix2x2;
 class Matrix3x3;
 
@@ -18,7 +19,7 @@ public:
     Matrix4x4(bool isIdentity = false);
     Matrix4x4(std::initializer_list<GLfloat> values);
 
-    Matrix4x4 identity();
+    static Matrix4x4 identity();
     void setToIdentity();
 
     bool inverse();
@@ -30,12 +31,21 @@ public:
     void setPosition(GLfloat x = 0.f, GLfloat y = 0.f, GLfloat z = 0.f);
     gsl::Vector3D getPosition();
 
+    gsl::Vector3D GetForwardVector();
+
     //Rotate using EulerMatrix
     void rotateX(GLfloat degrees = 0.f);
     void rotateY(GLfloat degrees = 0.f);
     void rotateZ(GLfloat degrees = 0.f);
-//    void rotate(GLfloat angle, Vector3D vector);
-//    void rotate(GLfloat angle, GLfloat xIn, GLfloat yIn, GLfloat zIn);
+
+    /**
+     * Rotates the matrix based on a quaternion.
+     * @param x the X value fo the quaternion.
+     * @param y the Y value fo the quaternion.
+     * @param z the Z value fo the quaternion.
+     * @param w the W value fo the quaternion.
+     */
+    void rotQuat(float x, float y, float z, float w);
 
     void scale(Vector3D s);
     void scale(GLfloat uniformScale);
@@ -63,8 +73,10 @@ public:
     GLfloat operator()(const int &y, const int &x) const;
 
     Matrix4x4 operator*(const Matrix4x4 &other);
-
     Vector4D operator*(const Vector4D &other);
+    GLfloat operator[](const unsigned int index);
+
+    GLfloat getFloat(int space);
 
     friend std::ostream& operator<<(std::ostream &output, const Matrix4x4 &mIn)
     {
@@ -75,7 +87,7 @@ public:
                   "{" << mIn.matrix[3] << "\t, " << mIn.matrix[7] << "\t, " << mIn.matrix[11] << "\t, " << mIn.matrix[15] << "}\n";
         return output;
     }
-    GLfloat getFloat(int space);
+    Matrix4x4 inversed();
 private:
     GLfloat matrix[16];
 };

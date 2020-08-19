@@ -27,6 +27,17 @@ namespace gsl
         return *this;
     }
 
+    Vector3D Vector2D::operator ^(const Vector2D &v) const
+    {
+            float i, j, k;
+
+            i = y*0 - 0*v.y;
+            j = x*0 - 0*v.x;
+            k = x*v.y - y*v.x;
+
+            return Vector3D(i,j,k);
+    }
+
     Vector2D Vector2D::operator+(const Vector2D &rhs) const
     {
         return {x + rhs.getX(), y + rhs.getY()};

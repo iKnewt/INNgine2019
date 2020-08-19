@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1047</width>
-    <height>788</height>
+    <width>612</width>
+    <height>416</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,36 +16,48 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Wireframe</string>
+     <layout class="QVBoxLayout" name="OpenGLLayout">
+      <property name="spacing">
+       <number>6</number>
       </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QVBoxLayout" name="OpenGLLayout"/>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+     </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1047</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionWireframe">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Wireframe</string>
+   </property>
+  </action>
+  <action name="actionTwofaced_Culling">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Twofaced Culling</string>
+   </property>
+  </action>
+  <action name="actionMinecraft_Mouse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Minecraft Mouse</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

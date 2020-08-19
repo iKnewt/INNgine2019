@@ -1,9 +1,10 @@
 #ifndef VECTOR2D_H
 #define VECTOR2D_H
 
-#include "gltypes.h"
+#include "Legacy/gltypes.h"
 #include <cmath>
 #include <iostream>
+#include "vector3d.h"
 
 namespace gsl
 {
@@ -24,6 +25,7 @@ public:
     Vector2D operator-() const;                     // -v
     Vector2D operator*(GLfloat lhs) const;          // v * f
     const Vector2D& operator =(const Vector2D &rhs);    // v = v
+    Vector3D operator ^ (const Vector2D& v) const; // v3D ^ v2D
 
     //Functions
     GLfloat length() const;

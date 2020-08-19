@@ -2,7 +2,7 @@
 #define MATRIX3X3_H
 
 #include "vector3d.h"
-#include "gltypes.h"
+#include "Legacy/gltypes.h"
 #include <utility>
 #include <iomanip>
 

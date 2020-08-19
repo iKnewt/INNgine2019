@@ -20,7 +20,7 @@ namespace gsl
     Matrix2x2::Matrix2x2(std::initializer_list<GLfloat> values)
     {
         int i = 0;
-        for(auto value : values)
+        for(float value : values)
             matrix[i++] = value;
     }
 

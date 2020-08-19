@@ -4,92 +4,147 @@
 #include <QWindow>
 #include <QTimer>
 #include <QElapsedTimer>
-#include "texture.h"
-#include "camera.h"
-#include "visualobject.h"
-#include "input.h"
+#include <chrono>
+#include <QFileInfo>
+#include <QtGui>
+#include <QTreeWidget>
+#include <QListWidget>
+
+#include "Legacy/camera.h"
+#include "Legacy/input.h"
+
+#include "Managers/assetmanager.h"
+#include "Managers/scenemanager.h"
+
+#include "Systems/rendersystem.h"
+#include "Systems/audiosystem.h"
+#include "Systems/movementsystem.h"
 
 class QOpenGLContext;
-class Shader;
 class MainWindow;
-class Light;
+
+/// Contains information on what to render in HUD.
+struct HUDelement
+{
+    /// Color to draw text in.
+    QPen pen_{Qt::white};
+    /// Image to display.
+    QImage image_{gsl::assetFilePath + "Icons/Alberto_Icon.png"};
+    /// Font to use.
+    QFont font_{"Sans Serif", 35};
+    /// Text to use before remaining trophy counter.
+    QString textBeforeTrophieCount_{"Cows left: "};
+    /// Text to use when getting all trophies.
+    QString textWhenWinning_{"You got all the cows!"};
+};
 
 /// This inherits from QWindow to get access to the Qt functionality and
 /// OpenGL surface.
 /// We also inherit from QOpenGLFunctions, to get access to the OpenGL functions
 /// This is the same as using glad and glw from general OpenGL tutorials
-class RenderWindow : public QWindow, protected QOpenGLFunctions_4_1_Core
+class RenderWindow : public QOpenGLWindow,
+        protected QOpenGLFunctions_4_1_Core
 {
     Q_OBJECT
+
 public:
-    RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow);
+    RenderWindow(QWindow* parent = nullptr, MainWindow* mainWindow = nullptr) :
+        QOpenGLWindow(PartialUpdateBlit, parent), mainWindow_(mainWindow) {}
     ~RenderWindow() override;
 
-    QOpenGLContext *context() { return mContext; }
+    void initializeGL() override;
+    void paintGL() override;
+    void resizeGL(int w, int h) override;
 
-    void exposeEvent(QExposeEvent *) override;
-    void toggleWireframe();
+    void toggleTwofacedCulling(bool TwoFacedCullingOn);
+    void toggleBaryc(bool arg1);
 
+    std::vector<std::shared_ptr<Camera>> cameras_;
+    size_t activeCameraID_{0};
+    void SetActiveCamera(size_t cameraID);
+
+    /// Contains the scene with entities and components.
+    std::shared_ptr<SceneManager> sceneManager_;
+
+    // SYSTEMS
+    /// Used to render scene.
+    RenderSystem renderSystem_;
+    /// Used to update movement and collision in scene.
+    MovementSystem movementSystem_;
+    /// Used to play audio in scene.
+    std::shared_ptr<AudioSystem> audioSystem_{nullptr};
+
+    /// Whether two faced culling is used.
+    bool twoFacedCulling_{false};
+
+    /**
+    * Starts game.
+    */
+    void Play();
+    /**
+    *
+    /// Pauses and unpauses game.
+    * @param arg1 true to pause, false to unpause.
+    */
+    void Pause(bool arg1);
+    /**
+    * Stops game and resets scene.
+    */
+    void Stop();
+    /**
+     * Udates movement system one tick.
+     * Often used to update transforms after a change has been made in editor.
+     */
+    void UpdateMovementSystem();
+    /**
+     * Updates only the transform of the active entity.
+     * Usually onlt the active entity is being moved around the scene.
+     */
+    void UpdateActiveEntityTransform();
+
+    /// Information on what to render in HUD.
+    HUDelement* HUDelement_;
+private:
+    /// Whether to show the HUD on screen.
+    bool showHUD_{false};
+    /**
+     * Paints the HUD on screen using QPainter.
+     */
+    void paintHUD();
+
+    /**
+     * Detects what entity the user is clicking with the mouse.
+     * @param event Used to get the mouse cursors position on screen.
+     */
+    void MousePicking(QMouseEvent* event);
     void checkForGLerrors();
 
-private slots:
-    void render();
+    float aspectratio_{1.f};
 
-private:
-    void init();
+    MainWindow* mainWindow_{nullptr};    //points back to MainWindow to be able to put info in StatusBar
+    QTimer* renderTimer_{nullptr};  //timer that drives the gameloop
+    class QOpenGLDebugLogger* openGLDebugLogger_{nullptr};
+
     void setCameraSpeed(float value);
+    void CalculateFramerate();
+    void StartOpenGLDebugger();
+    void HandleInput();
+    void HandleEvents();
+    void UpdateCameras();
 
-    QOpenGLContext *mContext{nullptr};
-    bool mInitialized{false};
+    /// Timer used to track elapsed time during playing.
+    QTime gameTimer_;
+    /// Time elapsed while game is playing, used to display time in HUD.
+    int elapsedTime_{0};
 
-    Texture *mTexture[4]{nullptr}; //We can hold 4 textures
-    Shader *mShaderProgram[4]{nullptr}; //We can hold 4 shaders
-
-    void setupPlainShader(int shaderIndex);
-    GLint mMatrixUniform0{-1};
-    GLint vMatrixUniform0{-1};
-    GLint pMatrixUniform0{-1};
-
-    void setupTextureShader(int shaderIndex);
-    GLint mMatrixUniform1{-1};
-    GLint vMatrixUniform1{-1};
-    GLint pMatrixUniform1{-1};
-    GLint mTextureUniform{-1};
-
-    std::vector<VisualObject*> mVisualObjects;
-
-    VisualObject *mPlayer;  //the controllable object
-    Light *mLight;
-
-    Camera *mCurrentCamera{nullptr};
-
-    bool mWireframe{false};
-
-    Input mInput;
-    float mCameraSpeed{0.05f};
-    float mCameraRotateSpeed{0.1f};
-    int mMouseXlast{0};
-    int mMouseYlast{0};
-
-    QTimer *mRenderTimer{nullptr};  //timer that drives the gameloop
-    QElapsedTimer mTimeStart;       //time variable that reads the actual FPS
-
-    float mAspectratio{1.f};
-
-    MainWindow *mMainWindow{nullptr};    //points back to MainWindow to be able to put info in StatusBar
-
-    class QOpenGLDebugLogger *mOpenGLDebugLogger{nullptr};
-
-    void calculateFramerate();
-
-    void startOpenGLDebugger();
-
-    void handleInput();
+    Input input_;
+    float cameraSpeed_{0.1f};
+    float cameraRotateSpeed_{0.1f};
+    int mouseXlast_{0};
+    int mouseYlast_{0};
 
 protected:
     //The QWindow that we inherit from has these functions to capture
-    // mouse and keyboard. Uncomment to use
-    //
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;

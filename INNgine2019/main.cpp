@@ -1,5 +1,22 @@
 #include <QApplication>
 #include "mainwindow.h"
+#include "Legacy/constants.h"
+
+
+void SetupDarkStyle()
+{
+    QFile f(gsl::assetFilePath + "/Styles/qdarkstyle/style.qss");
+    if (!f.exists())
+    {
+        printf("Unable to set stylesheet, file not found\n");
+    }
+    else
+    {
+        f.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&f);
+        qApp->setStyleSheet(ts.readAll());
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -8,11 +25,21 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
 
     //Makes an Qt application
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
+
+    QPixmap pixmap(gsl::assetFilePath + "Icons/Alberto_Splash.png");
+    QSplashScreen splash(pixmap);
+    splash.show();
+    app.processEvents();
 
     //Makes the Qt MainWindow and shows it.
-    MainWindow w;
-    w.show();
+    MainWindow window;
+    window.setAnimated(false);
+    window.show();
 
-    return a.exec();
+    SetupDarkStyle();
+
+    splash.finish(&window);
+
+    return app.exec();
 }
