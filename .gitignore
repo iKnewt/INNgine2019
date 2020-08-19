@@ -56,7 +56,3 @@ CMakeLists.txt.user*
 
 #other stuff
 .DS_Store
-
-#Assets
-*.bmp
-*.obj
