@@ -1,6 +1,8 @@
 ## About this game engine project
 A game engine originally created as a school project in a course on game engine architecture (fall 2019), and later revisited for further development.
 
+[Doxygen Documentation found here](https://codedocs.xyz/iKnewt/INNgine2019/)
+
 The engine is made in QT, using the Build Kit: Desktop_Qt_5_13_1_MinGW_64_bit
 Uses openGL for graphics and openAL for audio. Libs needed to run project, working on an executable, will include video later.
 
